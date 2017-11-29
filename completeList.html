@@ -1,0 +1,126 @@
+<!DOCTYPE>
+<html ng-app="myapp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>All Suppliers</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<!--<style>
+table, th, td {
+    border-style: solid;
+    border-width: medium;
+}
+th, td {
+    padding: 5px;
+    text-align: left;    
+}
+   
+</style> -->
+</head>
+
+ <body ng-controller="shiftApp" align= "center"  class="cover" style="background-size: cover; background-repeat: no-repeat;" >
+        <!-- <h1 align="center" ><b>Complete Shift Details</b></h1> -->
+        <div class="login-div container-fluid" style="border-bottom: 3px solid grey">
+            <table width="100%" >
+                <tr>
+                    <td style="width:10%">
+                    </td>
+                    <td   width="80%"  >
+                        <h2 align='center'><img  src="images/Logo.png" alt="Volvo"></h2>
+                    </td>
+                    <td   align='right'style="width:10%">
+                        <a href='#'  class="btn btn-info" ng-click="logout()"><span>Log Out</span></a>
+                    </td>
+                </tr>
+            </table >
+		</div>
+		
+<form name="form">
+    <div>
+        <br/>
+
+        <table style="width:100%" >
+            <tr>
+                <td style="width:20%">
+
+                </td>
+                <td style="width:10%">
+
+                </td>
+             <td align="center">
+            <h3 style="text-align:  justify; padding-left: 160px">
+                List of all Suppliers
+            </h3>
+             </td>
+              <td>
+                <div ><a href='addSupplierForm.html' class="btn btn-info" style="margin-right: -40px"><span>Add Supplier</span></a></div>
+              </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="panel">
+            <table class="table table-striped" border="1px solid black">
+                <thead>
+                    <tr>
+                        <th align="center">Parma ID</th>
+                        <th align="center">Original Name</th>
+                        <th align="center">English Name</th>
+                        <th align="center">Address</th>
+                        <th align="center">Street</th>
+                        <th align="center">City</th>
+                        <th align="center">Postal Code</th>
+                        <th align="center">Country Code</th>
+                        <th align="center">Country Name</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="sft in  completeSupplierDetails">
+
+                        <td ng-model="sft.supplierId">{{sft.supplierId}}
+                        </td>
+                        <td>{{sft.originalName}}</td>
+                        <td>{{sft.englishName}}</td>
+                        <td>{{sft.address}}</td>
+                        <td>{{sft.street}}</td>
+                        <td>{{sft.city}}</td>
+                        <td>{{sft.postalCode}}</td>
+                        <td>{{sft.countryCode}}</td>
+                        <td>{{sft.countryName}}</td>
+                        <td><a href='#'   class="btn btn-info" ng-click="linkToPaymentTerms(sft.supplierId)"><span>Link to Payment Terms</span></a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </form>
+
+<script type="text/javascript">
+var myapp = angular.module('myapp', []);
+myapp.controller('shiftApp', function ($scope,$rootScope, $http, $q, $window){
+ 	$http.get('http://34.226.196.2:8080/supplier/supplierlist').success(function(response){
+		$scope.completeSupplierDetails=response;
+	});
+
+    $scope.linkToPaymentTerms = function(id) {
+        $window.id = id;
+     //   alert("Supplier Id is:" +$window.id);
+        sessionStorage.setItem('id', id);
+        $window.location.href = 'linkToPaymentTerms.html';
+
+    }
+    $scope.logout = function() {
+        $window.location.href = 'login.html';
+    }
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="myapp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Payment Terms</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
+<style>
+
+table, th, td {
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+</style>
+
+
+</head>
+
+    <body ng-controller="supplierController"  class="cover" style="background-size: cover; background-repeat: no-repeat;" ng-submit="processForm()">
+    <div class="login-div container-fluid" style="border-bottom: 3px solid grey">
+	<table width="100%" >
+    <tr>
+        <td>
+            <a href='#' class="btn btn-info" ng-click="back()"><span>Back</span></a>
+        </td>
+        <td style="width:10%">
+        </td>
+        <td   width="80%"  >
+            <h2 align='center'><img  src="images/Logo.png" alt="Volvo"></h2>
+        </td>
+        <td   align='right'style="width:10%">
+        <a href='#'  class="btn btn-info" ng-click="logout()"><span>Log Out</span></a>
+        </td>
+    </tr>
+	</table >
+</div>
+        <!-- <h1 align="center" ><b>Shift Allowance Submission Form</b></h1> -->
+<form name="form">
+    <br/>
+    <h3 align="center" background-color="grey">Link To Payment Terms</h3>
+    <br/>
+    <br/>
+    <img  src="pay.png" width="400" height="200"  alt="Volvo">
+    <table align="right" style="width:50%;">
+
+        <tr>
+            <td></td>
+            <td><label><b>Parma ID:</b></label></td>
+            <td><input  ng-disabled="true" type="text"   value="{{supplierDatanPaymentDetails.supplierId}}"  ng-model="supplierDatanPaymentDetails.supplierId" maxlength="25"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><label><b>Original Name:</b></label></td>
+            <td><input  ng-disabled="true" type="text"   value="{{supplierDatanPaymentDetails.originalName}}" ng-model="supplierDatanPaymentDetails.originalName" maxlength="25"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td> <label><b>English Name:</b></label></td>
+            <td><input type="text"  ng-disabled="true"  value="{{supplierDatanPaymentDetails.englishName}}" ng-model="supplierDatanPaymentDetails.englishName" maxlength="25" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><label ><b>Address:</b></label></td>
+            <td><input  type="text" ng-disabled="true"  value="{{supplierDatanPaymentDetails.address}}"  ng-model="supplierDatanPaymentDetails.address" maxlength="25" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><label><b>Street:</b></label></td>
+            <td><input  type="text"  ng-disabled="true" value="{{supplierDatanPaymentDetails.street}}"  ng-model="supplierDatanPaymentDetails.street" maxlength="25" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><label><b>City:</b></label></td>
+            <td><input  type="text"  ng-disabled="true" value="{{supplierDatanPaymentDetails.city}}"  ng-model="supplierDatanPaymentDetails.city" maxlength="25" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><label><b>Postal Code:</b></label></td>
+            <td><input type="text" ng-disabled="true"  value="{{supplierDatanPaymentDetails.postalCode}}"  ng-model="supplierDatanPaymentDetails.postalCode" maxlength="25" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><label><b>Country Code:</b></label></td>
+            <td><input type="text" ng-disabled="true" value="{{supplierDatanPaymentDetails.countryCode}}"  ng-model="supplierDatanPaymentDetails.countryCode"  maxlength="25" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><label><b>Country Name:</b></label></td>
+            <td><input type="text" ng-disabled="true" value="{{supplierDatanPaymentDetails.countryName}}"  ng-model="supplierDatanPaymentDetails.countryName" maxlength="25" /></td>
+        </tr>
+     <tr>
+         <td></td>
+         <td><label ><b>Company Code:</b></label></td>
+         <td><input  type="text" ng-disabled="true"  value="{{supplierDatanPaymentDetails.companyCode}}"  ng-model="supplierDatanPaymentDetails.companyCode" maxlength="25" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><label><b>Agreed payment Term:</b></label></td>
+        <td><input  type="text" ng-disabled="true" value="{{supplierDatanPaymentDetails.paymentTerms}}"  ng-model="supplierDatanPaymentDetails.paymentTerms" maxlength="25" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><label><b>Segment:</b></label></td>
+        <td><input  type="text" ng-disabled="true" value="{{supplierDatanPaymentDetails.segment}}"  ng-model="supplierDatanPaymentDetails.segment" maxlength="25" /></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><label><b>Commodity:</b></label></td>
+        <td><input type="text" ng-disabled="true" value="{{supplierDatanPaymentDetails.commodity}}"  ng-model="supplierDatanPaymentDetails.commodity"  maxlength="25" /></td>
+     </tr>
+     <tr>
+         <td></td>
+         <td><label><b>Host Name:</b></label></td>
+         <td><input type="text" ng-disabled="true" value="{{supplierDatanPaymentDetails.hostname}}"  ng-model="supplierDatanPaymentDetails.hostname"   maxlength="25" /></td>
+     </tr>
+
+      <tr>
+          <td></td>
+          <td></td>
+          <td><button type="submit" ng-click="confirm()" class="btn btn-info">
+              <span class="glyphicon glyphicon-flash"></span> Confirm!
+          </button></td>
+
+      </tr>
+    </table>
+    <br>
+    <div align="center">
+
+</div>
+</form>
+
+<script type="text/javascript">
+var myapp = angular.module('myapp', []);
+myapp.controller('supplierController', function ($scope, $rootScope, $http, $q, $window){
+    $scope.supplierDatanPaymentDetails = {};
+//	alert("Id value is" +sessionStorage.getItem('id'));
+    $scope.supplierId = sessionStorage.getItem('id');
+    console.log('Before HHHHH');
+    var url = 'http://34.226.196.2:8080/supplier/supplierdetails?supplierId='+$scope.supplierId;
+    console.log(url)
+    $http.get(url).success(function(response){
+            console.log('JJJJJJJ');
+        $scope.supplierDatanPaymentDetails=response;
+        $scope.$digest();
+
+    });
+
+    $scope.confirm = function() {
+        alert('Supplier is created and payment terms are associated successfully. The supplier can now create orders in EBD');
+    };
+
+
+    $scope.back = function() {
+        $window.location.href = 'completeList.html';
+    };
+
+    $scope.logout = function() {
+        $window.location.href = 'login.html';
+    }
+
+});
+
+</script>
+</body>
+</html>
